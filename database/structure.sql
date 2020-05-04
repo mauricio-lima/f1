@@ -11,6 +11,20 @@ MySQL - 10.1.33-MariaDB : Database - unicsul_f1
 /*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+/*Table structure for table `tb_circuito` */
+
+DROP TABLE IF EXISTS `tb_circuito`;
+
+CREATE TABLE `tb_circuito` (
+  `ID_CIRCUITO` bigint(20) NOT NULL COMMENT 'Circuito - Chave primária',
+  `NM_CIRCUITO` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT 'Nome do circuito',
+  `NR_EXTENSAO` float DEFAULT NULL COMMENT 'Extensão do circuito',
+  `ID_PAIS` bigint(20) DEFAULT NULL COMMENT 'País - chave estrangeira - país onde o circuito se localiza',
+  PRIMARY KEY (`ID_CIRCUITO`),
+  KEY `FK_PAIS_CIRCUITO` (`ID_PAIS`),
+  CONSTRAINT `FK_PAIS_CIRCUITO` FOREIGN KEY (`ID_PAIS`) REFERENCES `tb_pais` (`ID_PAIS`) ON DELETE SET NULL ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
 /*Table structure for table `tb_equipe` */
 
 DROP TABLE IF EXISTS `tb_equipe`;
