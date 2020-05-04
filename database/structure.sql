@@ -80,6 +80,23 @@ CREATE TABLE `tb_prova` (
   CONSTRAINT `FK_PROVA_CIRCUITO` FOREIGN KEY (`ID_CIRCUITO`) REFERENCES `tb_circuito` (`ID_CIRCUITO`) ON DELETE SET NULL ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+/*Table structure for table `tb_resultado` */
+
+DROP TABLE IF EXISTS `tb_resultado`;
+
+CREATE TABLE `tb_resultado` (
+  `ID_PROVA` bigint(20) NOT NULL COMMENT 'prova - chave estrangeira - referência a item na tabela de provas',
+  `ID_PILOTO` bigint(20) NOT NULL COMMENT 'piloto - chave estrangeira - referência a item na tabela de pilotos',
+  `NR_TEMPO_PROVA` float DEFAULT NULL COMMENT 'tempo de prova do piloto referenciado',
+  `NR_COLOC_FINAL` smallint(6) DEFAULT NULL COMMENT 'colocação final do piloto referenciado',
+  `NR_POSICAO_GRID` smallint(6) DEFAULT NULL COMMENT 'posição no grid de largada do piloto referenciado',
+  `NR_MELHOR_VOLTA` int(11) DEFAULT NULL COMMENT 'número da melhor volta do piloto referenciado na prova referenciada',
+  KEY `FK_RESULTADO_PROVA` (`ID_PROVA`),
+  KEY `FK_RESULTADO_PILOTO` (`ID_PILOTO`),
+  CONSTRAINT `FK_RESULTADO_PILOTO` FOREIGN KEY (`ID_PILOTO`) REFERENCES `tb_piloto` (`ID_PILOTO`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `FK_RESULTADO_PROVA` FOREIGN KEY (`ID_PROVA`) REFERENCES `tb_prova` (`ID_PROVA`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
