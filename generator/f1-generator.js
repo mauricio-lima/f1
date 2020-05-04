@@ -13,19 +13,30 @@
 
     async function UpdateView()
     {
-        const output = []
-        for(const [key, driver] of database.drivers.entries())
-        {
-            output.push(driver.id + '   ' + driver.name)
-        }
+        let drivers = []
+        for(const [key, driver] of database.drivers.entries()) drivers.push(driver)
+        drivers.sort( (a,b) => {
+            if (a.name < b.name) return -1
+            if (a.name > b.name) return  1
+            return 0
+        })
+        drivers = drivers.map( driver => `<div class="row">
+                                              <div class="col-sm-1" >${driver.id}   </div>
+                                              <div class="col-sm-9" >${driver.name} </div>
+                                              <div class="col-sm-1" >45             </div>
+                                          </div>`)
 
-        output.push('')
+        const circuits = []
         for(const [key, circuit] of database.circuits.entries())
         {
-            output.push(circuit.id + '   ' + circuit.name)
+            circuits.push(`<div class="row">
+                              <div class="col-sm-1" >${circuit.id}  </div>
+                              <div class="col-sm-9" >${circuit.name} </div>
+                           </div>`)
         }
 
-        document.getElementById('container').innerHTML = output.join('<br>')
+        document.getElementById('drivers').innerHTML  = drivers.join('<br>')
+        document.getElementById('circuits').innerHTML = circuits.join('<br>')
         await sleep(200)
     }
 
