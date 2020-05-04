@@ -1,8 +1,34 @@
 (() => {
+    const database = {
+        drivers  : new Map,
+        circuits : new Map,
+    }
+
+    const sleep = (milliseconds) => new Promise( (resolve) => setTimeout(resolve, milliseconds) )
+
     function DOMLoaded()
     {
         TranslateData()
     }
+
+    async function UpdateView()
+    {
+        const output = []
+        for(const [key, driver] of database.drivers.entries())
+        {
+            output.push(driver.id + '   ' + driver.name)
+        }
+
+        output.push('')
+        for(const [key, circuit] of database.circuits.entries())
+        {
+            output.push(circuit.id + '   ' + circuit.name)
+        }
+
+        document.getElementById('container').innerHTML = output.join('<br>')
+        await sleep(200)
+    }
+
 
     async function TranslateData()
     {
@@ -23,39 +49,33 @@
             response = await fetch(`../json/countries.json`)
             const countries = await response.json()
 
-            const drivers = new Map
-            const circuits = new Map
             for(let race of data.MRData.RaceTable.Races)
             {
-                if (!circuits.has(race.Circuit.circuitId))
+                if (!database.circuits.has(race.Circuit.circuitId))
                 {
-                    circuits.set(race.Circuit.circuitId, {
+                    database.circuits.set(race.Circuit.circuitId, {
+                        id   : database.circuits.size + 1,
                         name : race.Circuit.circuitName
                     })
+                    await UpdateView()
                 }
 
                 for(let result of race.Results)
                 {
                     const driver = result.Driver
-                    if (!drivers.has(driver.driverId))
+                    if (!database.drivers.has(driver.driverId))
                     {
                         const country = countries.filter( item => item.nacionality == driver.nacionality) 
-                        drivers.set(driver.driverId, {
+                        database.drivers.set(driver.driverId, {
+                            id      : database.drivers.size + 1,
                             name    : driver.givenName + ' ' + driver.familyName,
                             country : country.num_code
                         })
+                        await UpdateView()
                     }
 
                 }
             }
-  
-            const output = []
-            for(const [key, circuit] of circuits.entries())
-            {
-                output.push(circuit.name)
-            }
-
-            document.getElementById('container').innerHTML = output.join('<br>')
         }
         catch (error)
         {
