@@ -1,0 +1,722 @@
+[
+    {
+        "circuitId": "adelaide",
+        "name": "Adelaide street Circuit",
+        "type": "street",
+        "length": 3780,
+        "locality": "Adelaide",
+        "country": "Australia",
+        "clockwise": true,
+        "aclockwise": false
+    },
+    {
+        "circuitId": "ain-diab",
+        "name": "Ain-Diab Circuit",
+        "type": "road",
+        "length": 7618,
+        "locality": "Casablanca",
+        "country": "Morocco",
+        "clockwise": true,
+        "aclockwise": false
+    },
+    {
+        "circuitId": "aintree",
+        "name": "Aintree Motor Racing Circuit",
+        "type": "road",
+        "length": 4828,
+        "locality": "Aintree",
+        "country": "United Kingdom",
+        "clockwise": true,
+        "aclockwise": false
+    },
+    {
+        "circuitId": "albert_park",
+        "name": "Albert Park Circuit",
+        "type": "street",
+        "length": 5303,
+        "locality": "Melbourne",
+        "country": "Australia",
+        "clockwise": true,
+        "aclockwise": false
+    },
+    {
+        "circuitId": "estoril",
+        "name": "Aut\u00f3dromo do Estoril",
+        "type": "race",
+        "length": 4360,
+        "locality": "Cascais",
+        "country": "Portugal",
+        "clockwise": true,
+        "aclockwise": false
+    },
+    {
+        "circuitId": "imola",
+        "name": "Autodromo Enzo e Dino Ferrari",
+        "type": "race",
+        "length": 4933,
+        "locality": "Imola",
+        "country": "Italy",
+        "clockwise": false,
+        "aclockwise": true
+    },
+    {
+        "circuitId": "rodriguez",
+        "name": "Aut\u00f3dromo Hermanos Rodr\u00edguez",
+        "type": "race",
+        "length": 4304,
+        "locality": "Mexico City",
+        "country": "Mexico",
+        "clockwise": true,
+        "aclockwise": false
+    },
+    {
+        "circuitId": "jacarepagua",
+        "name": "Aut\u00f3dromo Internacional Nelson Piquet",
+        "type": "race",
+        "length": 5031,
+        "locality": "Rio de Janeiro",
+        "country": "Brazil",
+        "clockwise": false,
+        "aclockwise": true
+    },
+    {
+        "circuitId": "interlagos",
+        "name": "Aut\u00f3dromo Jos\u00e9 Carlos Pace",
+        "type": "race",
+        "length": 4309,
+        "locality": "S\u00e3o Paulo",
+        "country": "Brazil",
+        "clockwise": false,
+        "aclockwise": true
+    },
+    {
+        "circuitId": "galvez",
+        "name": "Aut\u00f3dromo Juan y Oscar G\u00e1lvez",
+        "type": "race",
+        "length": 4259,
+        "locality": "Buenos Aires",
+        "country": "Argentina",
+        "clockwise": true,
+        "aclockwise": false
+    },
+    {
+        "circuitId": "monza",
+        "name": "Autodromo Nazionale Monza",
+        "type": "race",
+        "length": 5793,
+        "locality": "Monza",
+        "country": "Italy",
+        "clockwise": true,
+        "aclockwise": false
+    },
+    {
+        "circuitId": "avus",
+        "name": "AVUS",
+        "type": "road",
+        "length": 8300,
+        "locality": "Berlin",
+        "country": "Germany",
+        "clockwise": false,
+        "aclockwise": true
+    },
+    {
+        "circuitId": "bahrain",
+        "name": "Bahrain International Circuit",
+        "type": "race",
+        "length": 5412,
+        "locality": "Sakhir",
+        "country": "Bahrain",
+        "clockwise": true,
+        "aclockwise": false
+    },
+    {
+        "circuitId": "BAK",
+        "name": "Baku City Circuit",
+        "type": "street",
+        "length": 6003,
+        "locality": "Baku",
+        "country": "Azerbaijan",
+        "clockwise": false,
+        "aclockwise": true
+    },
+    {
+        "circuitId": "brands_hatch",
+        "name": "Brands Hatch",
+        "type": "race",
+        "length": 3703,
+        "locality": "West Kingsdown",
+        "country": "United Kingdom",
+        "clockwise": true,
+        "aclockwise": false
+    },
+    {
+        "circuitId": "buddh",
+        "name": "Buddh International Circuit",
+        "type": "race",
+        "length": 5141,
+        "locality": "Greater Noida",
+        "country": "India",
+        "clockwise": true,
+        "aclockwise": false
+    },
+    {
+        "circuitId": "bugatti",
+        "name": "Bugatti Circuit",
+        "type": "race",
+        "length": 4430,
+        "locality": "Le Mans",
+        "country": "France",
+        "clockwise": true,
+        "aclockwise": false
+    },
+    {
+        "circuitId": "caesars",
+        "name": "Caesars Palace Grand Prix Circuit",
+        "type": "street",
+        "length": 3650,
+        "locality": "Las Vegas",
+        "country": "United States",
+        "clockwise": false,
+        "aclockwise": true
+    },
+    {
+        "circuitId": "charade",
+        "name": "Charade Circuit",
+        "type": "road",
+        "length": 8055,
+        "locality": "Saint-Gen\u00e8s-Champanelle",
+        "country": "France",
+        "clockwise": true,
+        "aclockwise": false
+    },
+    {
+        "circuitId": "bremgarten",
+        "name": "Circuit Bremgarten",
+        "type": "road",
+        "length": 7208,
+        "locality": "Bern",
+        "country": "Switzerland",
+        "clockwise": true,
+        "aclockwise": false
+    },
+    {
+        "circuitId": "catalunya",
+        "name": "Circuit de Barcelona-Catalunya",
+        "type": "race",
+        "length": 4655,
+        "locality": "Montmel\u00f3",
+        "country": "Spain",
+        "clockwise": true,
+        "aclockwise": false
+    },
+    {
+        "circuitId": "monaco",
+        "name": "Circuit de Monaco",
+        "type": "street",
+        "length": 3337,
+        "locality": "Monte Carlo",
+        "country": "Monaco",
+        "clockwise": true,
+        "aclockwise": false
+    },
+    {
+        "circuitId": "magny_cours",
+        "name": "Circuit de Nevers Magny-Cours",
+        "type": "race",
+        "length": 4411,
+        "locality": "Magny-Cours",
+        "country": "France",
+        "clockwise": true,
+        "aclockwise": false
+    },
+    {
+        "circuitId": "spa",
+        "name": "Circuit de Spa-Francorchamps",
+        "type": "race",
+        "length": 7004,
+        "locality": "Stavelot",
+        "country": "Belgium",
+        "clockwise": true,
+        "aclockwise": false
+    },
+    {
+        "circuitId": "villeneuve",
+        "name": "Circuit Gilles Villeneuve",
+        "type": "street",
+        "length": 4361,
+        "locality": "Montreal",
+        "country": "Canada",
+        "clockwise": true,
+        "aclockwise": false
+    },
+    {
+        "circuitId": "tremblant",
+        "name": "Circuit Mont-Tremblant",
+        "type": "race",
+        "length": 4265,
+        "locality": "Mont-Tremblant",
+        "country": "Canada",
+        "clockwise": true,
+        "aclockwise": false
+    },
+    {
+        "circuitId": "americas",
+        "name": "Circuit of the Americas",
+        "type": "race",
+        "length": 5513,
+        "locality": "Austin",
+        "country": "United States",
+        "clockwise": false,
+        "aclockwise": true
+    },
+    {
+        "circuitId": "zandvoort",
+        "name": "Circuit Park Zandvoort",
+        "type": "race",
+        "length": 4252,
+        "locality": "Zandvoort",
+        "country": "Netherlands",
+        "clockwise": true,
+        "aclockwise": false
+    },
+    {
+        "circuitId": "ricard",
+        "name": "Circuit Paul Ricard",
+        "type": "race",
+        "length": 5842,
+        "locality": "Le Castellet",
+        "country": "France",
+        "clockwise": true,
+        "aclockwise": false
+    },
+    {
+        "circuitId": "zolder",
+        "name": "Circuit Zolder",
+        "type": "race",
+        "length": 4262,
+        "locality": "Heusden-Zolder",
+        "country": "Belgium",
+        "clockwise": true,
+        "aclockwise": false
+    },
+    {
+        "circuitId": "boavista",
+        "name": "Circuito da Boavista",
+        "type": "street",
+        "length": 7775,
+        "locality": "Porto",
+        "country": "Portugal",
+        "clockwise": false,
+        "aclockwise": true
+    },
+    {
+        "circuitId": "jerez",
+        "name": "Circuito de Jerez",
+        "type": "race",
+        "length": 4428,
+        "locality": "Jerez de la Frontera",
+        "country": "Spain",
+        "clockwise": true,
+        "aclockwise": false
+    },
+    {
+        "circuitId": "monsanto",
+        "name": "Circuito de Monsanto",
+        "type": "street",
+        "length": 5440,
+        "locality": "Lisbon",
+        "country": "Portugal",
+        "clockwise": true,
+        "aclockwise": false
+    },
+    {
+        "circuitId": "jarama",
+        "name": "Circuito del Jarama",
+        "type": "race",
+        "length": 3404,
+        "locality": "San Sebasti\u00e1n de los Reyes",
+        "country": "Spain",
+        "clockwise": true,
+        "aclockwise": false
+    },
+    {
+        "circuitId": "dallas",
+        "name": "Dallas Grand Prix Circuit",
+        "type": "street",
+        "length": 3901,
+        "locality": "Dallas",
+        "country": "United States",
+        "clockwise": false,
+        "aclockwise": true
+    },
+    {
+        "circuitId": "detroit",
+        "name": "Detroit street circuit",
+        "type": "street",
+        "length": 4168,
+        "locality": "Detroit",
+        "country": "United States",
+        "clockwise": false,
+        "aclockwise": true
+    },
+    {
+        "circuitId": "dijon",
+        "name": "Dijon-Prenois",
+        "type": "race",
+        "length": 3886,
+        "locality": "Prenois",
+        "country": "France",
+        "clockwise": true,
+        "aclockwise": false
+    },
+    {
+        "circuitId": "donington",
+        "name": "Donington Park",
+        "type": "race",
+        "length": 4020,
+        "locality": "Castle Donington",
+        "country": "United Kingdom",
+        "clockwise": true,
+        "aclockwise": false
+    },
+    {
+        "circuitId": "fuji",
+        "name": "Fuji Speedway",
+        "type": "race",
+        "length": 4563,
+        "locality": "Oyama",
+        "country": "Japan",
+        "clockwise": true,
+        "aclockwise": false
+    },
+    {
+        "circuitId": "hanoi",
+        "name": "Hanoi street Circuit",
+        "type": "street",
+        "length": 5607,
+        "locality": "Hanoi",
+        "country": "Vietnam",
+        "clockwise": false,
+        "aclockwise": true
+    },
+    {
+        "circuitId": "hockenheimring",
+        "name": "Hockenheimring",
+        "type": "race",
+        "length": 4574,
+        "locality": "Hockenheim",
+        "country": "Germany",
+        "clockwise": true,
+        "aclockwise": false
+    },
+    {
+        "circuitId": "hungaroring",
+        "name": "Hungaroring",
+        "type": "race",
+        "length": 4381,
+        "locality": "Mogyor\u00f3d",
+        "country": "Hungary",
+        "clockwise": true,
+        "aclockwise": false
+    },
+    {
+        "circuitId": "indianapolis",
+        "name": "Indianapolis Motor Speedway",
+        "type": "race",
+        "length": 4192,
+        "locality": "Speedway",
+        "country": "United States",
+        "clockwise": false,
+        "aclockwise": true
+    },
+    {
+        "circuitId": "istanbul",
+        "name": "Istanbul Park",
+        "type": "race",
+        "length": 5338,
+        "locality": "Istanbul",
+        "country": "Turkey",
+        "clockwise": false,
+        "aclockwise": true
+    },
+    {
+        "circuitId": "yeongam",
+        "name": "Korea International Circuit",
+        "type": "race",
+        "length": 5615,
+        "locality": "Yeongam",
+        "country": "South Korea",
+        "clockwise": false,
+        "aclockwise": true
+    },
+    {
+        "circuitId": "kyalami",
+        "name": "Kyalami Racing Circuit",
+        "type": "race",
+        "length": 4200,
+        "locality": "Midrand",
+        "country": "South Africa",
+        "clockwise": false,
+        "aclockwise": true
+    },
+    {
+        "circuitId": "long_beach",
+        "name": "Long Beach street Circuit",
+        "type": "street",
+        "length": 3275,
+        "locality": "Long Beach",
+        "country": "United States",
+        "clockwise": true,
+        "aclockwise": false
+    },
+    {
+        "circuitId": "marina_bay",
+        "name": "Marina Bay street Circuit",
+        "type": "street",
+        "length": 5063,
+        "locality": "Singapore",
+        "country": "",
+        "clockwise": false,
+        "aclockwise": true
+    },
+    {
+        "circuitId": "montjuic",
+        "name": "Montju\u00efc circuit",
+        "type": "street",
+        "length": 3791,
+        "locality": "Barcelona",
+        "country": "Spain",
+        "clockwise": false,
+        "aclockwise": true
+    },
+    {
+        "circuitId": "mosport",
+        "name": "Mosport International raceway",
+        "type": "race",
+        "length": 3957,
+        "locality": "Bowmanville",
+        "country": "Canada",
+        "clockwise": true,
+        "aclockwise": false
+    },
+    {
+        "circuitId": "nivelles",
+        "name": "Nivelles-Baulers",
+        "type": "race",
+        "length": 3724,
+        "locality": "Nivelles",
+        "country": "Belgium",
+        "clockwise": true,
+        "aclockwise": false
+    },
+    {
+        "circuitId": "nurburgring",
+        "name": "N\u00fcrburgring",
+        "type": "race",
+        "length": 5148,
+        "locality": "N\u00fcrburg",
+        "country": "Germany",
+        "clockwise": true,
+        "aclockwise": false
+    },
+    {
+        "circuitId": "okayama",
+        "name": "Okayama International Circuit",
+        "type": "race",
+        "length": 3703,
+        "locality": "Mimasaka",
+        "country": "Japan",
+        "clockwise": true,
+        "aclockwise": false
+    },
+    {
+        "circuitId": "predralbes",
+        "name": "Pedralbes Circuit",
+        "type": "street",
+        "length": 6316,
+        "locality": "Barcelona",
+        "country": "Spain",
+        "clockwise": true,
+        "aclockwise": false
+    },
+    {
+        "circuitId": "pescara",
+        "name": "Pescara Circuit",
+        "type": "road",
+        "length": 25800,
+        "locality": "Pescara",
+        "country": "Italy",
+        "clockwise": true,
+        "aclockwise": false
+    },
+    {
+        "circuitId": "phoenix",
+        "name": "Phoenix street circuit",
+        "type": "street",
+        "length": 3720,
+        "locality": "Phoenix",
+        "country": "United States",
+        "clockwise": false,
+        "aclockwise": true
+    },
+    {
+        "circuitId": "george",
+        "name": "Prince George Circuit",
+        "type": "race",
+        "length": 3920,
+        "locality": "East London",
+        "country": "South Africa",
+        "clockwise": true,
+        "aclockwise": false
+    },
+    {
+        "circuitId": "red_bull_ring",
+        "name": "Red Bull Ring (formerly A1-Ring and \u00d6sterreichring)",
+        "type": "race",
+        "length": 4318,
+        "locality": "Spielberg bei Knittelfeld",
+        "country": "Austria",
+        "clockwise": true,
+        "aclockwise": false
+    },
+    {
+        "circuitId": "reims",
+        "name": "Reims-Gueux",
+        "type": "road",
+        "length": 8302,
+        "locality": "Gueux",
+        "country": "France",
+        "clockwise": true,
+        "aclockwise": false
+    },
+    {
+        "circuitId": "riverside",
+        "name": "Riverside International raceway",
+        "type": "race",
+        "length": 5271,
+        "locality": "Moreno Valley",
+        "country": "United States",
+        "clockwise": true,
+        "aclockwise": false
+    },
+    {
+        "circuitId": "essarts",
+        "name": "Rouen-Les-Essarts",
+        "type": "road",
+        "length": 6542,
+        "locality": "Orival",
+        "country": "France",
+        "clockwise": true,
+        "aclockwise": false
+    },
+    {
+        "circuitId": "anderstorp",
+        "name": "Scandinavian raceway",
+        "type": "race",
+        "length": 4031,
+        "locality": "Anderstorp",
+        "country": "Sweden",
+        "clockwise": true,
+        "aclockwise": false
+    },
+    {
+        "circuitId": "sebring",
+        "name": "Sebring International raceway",
+        "type": "road",
+        "length": 8356,
+        "locality": "Sebring",
+        "country": "United States",
+        "clockwise": true,
+        "aclockwise": false
+    },
+    {
+        "circuitId": "sepang",
+        "name": "Sepang International Circuit",
+        "type": "race",
+        "length": 5543,
+        "locality": "Sepang",
+        "country": "Malaysia",
+        "clockwise": true,
+        "aclockwise": false
+    },
+    {
+        "circuitId": "shanghai",
+        "name": "Shanghai International Circuit",
+        "type": "race",
+        "length": 5451,
+        "locality": "Shanghai",
+        "country": "China",
+        "clockwise": true,
+        "aclockwise": false
+    },
+    {
+        "circuitId": "silverstone",
+        "name": "Silverstone Circuit",
+        "type": "race",
+        "length": 5891,
+        "locality": "Silverstone",
+        "country": "United Kingdom",
+        "clockwise": true,
+        "aclockwise": false
+    },
+    {
+        "circuitId": "sochi",
+        "name": "Sochi Autodrom",
+        "type": "road",
+        "length": 5848,
+        "locality": "Sochi",
+        "country": "Russia",
+        "clockwise": true,
+        "aclockwise": false
+    },
+    {
+        "circuitId": "suzuka",
+        "name": "Suzuka Circuit",
+        "type": "race",
+        "length": 5807,
+        "locality": "Suzuka",
+        "country": "Japan",
+        "clockwise": true,
+        "aclockwise": true
+    },
+    {
+        "circuitId": "valencia",
+        "name": "Valencia street Circuit",
+        "type": "street",
+        "length": 5419,
+        "locality": "Valencia",
+        "country": "Spain",
+        "clockwise": true,
+        "aclockwise": false
+    },
+    {
+        "circuitId": "watkins_glen",
+        "name": "Watkins Glen",
+        "type": "race",
+        "length": 5430,
+        "locality": "Watkins Glen",
+        "country": "United States",
+        "clockwise": true,
+        "aclockwise": false
+    },
+    {
+        "circuitId": "yas_marina",
+        "name": "Yas Marina Circuit",
+        "type": "race",
+        "length": 5554,
+        "locality": "Abu Dhabi",
+        "country": "United Arab Emirates",
+        "clockwise": false,
+        "aclockwise": true
+    },
+    {
+        "circuitId": "zeltweg",
+        "name": "Zeltweg Airfield",
+        "type": "road",
+        "length": 3186,
+        "locality": "Zeltweg",
+        "country": "Austria",
+        "clockwise": true,
+        "aclockwise": false
+    }
+]
