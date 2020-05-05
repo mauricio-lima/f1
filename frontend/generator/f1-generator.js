@@ -24,10 +24,10 @@
             return 0
         })
         drivers = drivers.map( driver => `<div class="row">
-                                              <div class="col-sm-1" > ${driver.id}      </div>
-                                              <div class="col-sm-6" > ${driver.name}    </div>
-                                              <div class="col-sm-4" > ${driver.country} </div>
-                                              <div class="col-sm-1" > ${driver.points}  </div>
+                                              <div class="col-sm-2" > ${driver.id}      </div>
+                                              <div class="col-sm-5" > ${driver.name}    </div>
+                                              <div class="col-sm-3" > ${driver.country} </div>
+                                              <div class="col-sm-2" > ${driver.points}  </div>
                                           </div>`)
 
         const circuits = []
@@ -48,9 +48,9 @@
                            </div>`)
         }
 
-        document.getElementById('drivers').innerHTML   = drivers.join('<br>')
-        document.getElementById('circuits').innerHTML  = circuits.join('<br>')
-        document.getElementById('countries').innerHTML = countries.join('<br>')
+        document.getElementById('drivers'  ).innerHTML =   drivers.join('\n')
+        document.getElementById('circuits' ).innerHTML =  circuits.join('\n')
+        document.getElementById('countries').innerHTML = countries.join('\n')
 
         await sleep(700)
     }
