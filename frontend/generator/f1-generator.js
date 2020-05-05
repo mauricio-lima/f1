@@ -3,6 +3,7 @@
 
     const database = {
         countries : new Map,
+        teams     : new Map,
         drivers   : new Map,
         circuits  : new Map,
     }
@@ -57,9 +58,23 @@
             sql.countries.push(`INSERT INTO tb_paises (ID_PAIS, NM_PAIS, NR_POPULACAO) VALUES (${country.id}, '${country.name}', NULL);`)
         }
 
+        const teams = []
+        for(const [key, team] of database.teams.entries())
+        {
+            teams.push(`<div class="row">
+                              <div class="col-sm-1"  >${team.id}   </div>
+                              <div class="col-sm-4" >${team.name} </div>
+                              <div class="col-sm-4" >${team.country} </div>
+                           </div>`)
+
+            //sql.teams.push(`INSERT INTO tb_paises (ID_PAIS, NM_PAIS, NR_POPULACAO) VALUES (${country.id}, '${country.name}', NULL);`)
+        }
+
         document.getElementById('drivers'  ).innerHTML =   drivers.join('\n')
         document.getElementById('circuits' ).innerHTML =  circuits.join('\n')
         document.getElementById('countries').innerHTML = countries.join('\n')
+        document.getElementById('teams'    ).innerHTML =     teams.join('\n')
+
         document.getElementById('sql'      ).innerHTML = sql.countries.concat(sql.circuits).join('\n')
 
         await sleep(700)
@@ -90,6 +105,21 @@
         database.countries.set(key.toLowerCase(), {
             id   : database.countries.size + 1,
             name : normalized
+        })
+
+        return true
+    }
+
+
+    function TeamsInsertIfNotFound(key)
+    {
+        if ( database.teams.has(key.constructorId) )
+            return false
+
+        database.teams.set(key.constructorId, {
+            id      : database.teams.size + 1,
+            name    : key.name,
+            country : key.nationality
         })
 
         return true
@@ -134,6 +164,11 @@
                 
                 for(let result of race.Results)
                 {
+                    if ( TeamsInsertIfNotFound(result.Constructor) )
+                    {
+                        await UpdateView()
+                    }
+
                     const driver = result.Driver
                     if (!database.drivers.has(driver.driverId))
                     {
