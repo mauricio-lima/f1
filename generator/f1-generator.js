@@ -16,14 +16,14 @@
         let drivers = []
         for(const [key, driver] of database.drivers.entries()) drivers.push(driver)
         drivers.sort( (a,b) => {
-            if (a.name < b.name) return -1
-            if (a.name > b.name) return  1
+            if (a.points < b.points) return  1
+            if (a.points > b.points) return -1
             return 0
         })
         drivers = drivers.map( driver => `<div class="row">
-                                              <div class="col-sm-1" >${driver.id}   </div>
-                                              <div class="col-sm-9" >${driver.name} </div>
-                                              <div class="col-sm-1" >45             </div>
+                                              <div class="col-sm-1" > ${driver.id}     </div>
+                                              <div class="col-sm-9" > ${driver.name}   </div>
+                                              <div class="col-sm-1" > ${driver.points} </div>
                                           </div>`)
 
         const circuits = []
@@ -37,7 +37,7 @@
 
         document.getElementById('drivers').innerHTML  = drivers.join('<br>')
         document.getElementById('circuits').innerHTML = circuits.join('<br>')
-        await sleep(200)
+        await sleep(700)
     }
 
 
@@ -80,13 +80,19 @@
                         database.drivers.set(driver.driverId, {
                             id      : database.drivers.size + 1,
                             name    : driver.givenName + ' ' + driver.familyName,
-                            country : country.num_code
+                            country : country.num_code,
+                            points  : 0
                         })
-                        await UpdateView()
+                        await UpdateView
+                    }
+                    if (result.points != '0')
+                    {
+                        database.drivers.get(driver.driverId).points += parseInt(result.points)
                     }
 
                 }
             }
+            await UpdateView()
         }
         catch (error)
         {
