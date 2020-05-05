@@ -8,14 +8,15 @@ body {
 }
 
 .scroll {
-    margin     : 2px;
-    max-height : 180px;
-    min-height : 150px;
-    overflow-y : scroll;
+    margin        : 2px;
+    max-height    : 180px;
+    min-height    : 150px;
+    border-radius : 8px;
+    overflow-y    : scroll;
 }
 
 #drivers {
-    background : #b3d9ff;
+    background : #ffc266;
 }
 
 #drivers .row  div:first-child, #drivers .row div:last-child {
@@ -23,15 +24,18 @@ body {
 }
 
 #circuits {
-    background : #ffc34d;
+    background : #ffad33;
 }
 
 #countries {
-    background : limegreen;
+    background : #ff9900;
 }
 
 #sql {
-    font-family: 'Space Mono', monospace;
+    font-family   : 'Space Mono', monospace;
+    border-radius : 12px;
+    padding       : 12px;
+    resize        : vertical;
 }
 
 .container .row {
