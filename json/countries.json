@@ -1277,7 +1277,8 @@
     "num_code": "643",
     "alpha_2_code": "RU",
     "alpha_3_code": "RUS",
-    "en_short_name": "Russian Federation",
+    "en_short_name": "Russia",
+    "en_short_name_correct": "Russian Federation",
     "nationality": "Russian"
     },
     {
@@ -1633,15 +1634,17 @@
     {
     "num_code": "784",
     "alpha_2_code": "AE",
-    "alpha_3_code": "ARE",
+    "alpha_3_code": "UAE",
     "en_short_name": "United Arab Emirates",
     "nationality": "Emirati, Emirian, Emiri"
     },
     {
     "num_code": "826",
-    "alpha_2_code": "GB",
+    "alpha_2_code": "UK",
+    "alpha_2_code_correct": "GB",
     "alpha_3_code": "GBR",
-    "en_short_name": "United Kingdom of Great Britain and Northern Ireland",
+    "en_short_name": "United Kingdom of Great Britain",
+    "en_short_name_correct": "United Kingdom of Great Britain and Northern Ireland",
     "nationality": "British, UK"
     },
     {

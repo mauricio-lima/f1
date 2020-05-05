@@ -1,9 +1,20 @@
 
 #drivers {
-    background: #b3d9ff;
+    background : #b3d9ff;
 }
 
+#drivers .row  div:first-child, #drivers .row div:last-child {
+    text-align : right;
+}
 
 #circuits {
-    background: #ffc34d;
+    background : #ffc34d;
+}
+
+#countries {
+    background : limegreen;
+}
+
+.container .row {
+    padding    : 3px;
 }

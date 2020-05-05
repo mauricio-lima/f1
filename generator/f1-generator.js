@@ -1,7 +1,10 @@
 (() => {
+    let countriesData = []
+
     const database = {
-        drivers  : new Map,
-        circuits : new Map,
+        countries : new Map,
+        drivers   : new Map,
+        circuits  : new Map,
     }
 
     const sleep = (milliseconds) => new Promise( (resolve) => setTimeout(resolve, milliseconds) )
@@ -13,6 +16,11 @@
 
     async function UpdateView()
     {
+        let sql = {
+            countries : [],
+            circuits  : []
+        }
+
         let drivers = []
         for(const [key, driver] of database.drivers.entries()) drivers.push(driver)
         drivers.sort( (a,b) => {
@@ -21,9 +29,10 @@
             return 0
         })
         drivers = drivers.map( driver => `<div class="row">
-                                              <div class="col-sm-1" > ${driver.id}     </div>
-                                              <div class="col-sm-9" > ${driver.name}   </div>
-                                              <div class="col-sm-1" > ${driver.points} </div>
+                                              <div class="col-sm-2" > ${driver.id}      </div>
+                                              <div class="col-sm-5" > ${driver.name}    </div>
+                                              <div class="col-sm-3" > ${driver.country} </div>
+                                              <div class="col-sm-2" > ${driver.points}  </div>
                                           </div>`)
 
         const circuits = []
@@ -33,11 +42,57 @@
                               <div class="col-sm-1" >${circuit.id}  </div>
                               <div class="col-sm-9" >${circuit.name} </div>
                            </div>`)
+
+            sql.circuits.push(`INSERT INTO tb_circuitos (ID_CIRCUITO, NM_CIRCUITO, ID_PAIS) VALUES (${circuit.id}, '${circuit.name}', '${circuit.country});`)
         }
 
-        document.getElementById('drivers').innerHTML  = drivers.join('<br>')
-        document.getElementById('circuits').innerHTML = circuits.join('<br>')
+        const countries = []
+        for(const [key, country] of database.countries.entries())
+        {
+            countries.push(`<div class="row">
+                              <div class="col-sm-1"  >${country.id}   </div>
+                              <div class="col-sm-11" >${country.name} </div>
+                           </div>`)
+
+            sql.countries.push(`INSERT INTO tb_paises (ID_PAIS, NM_PAIS) VALUES (${country.id}, '${country.name}');`)
+        }
+
+        document.getElementById('drivers'  ).innerHTML =   drivers.join('\n')
+        document.getElementById('circuits' ).innerHTML =  circuits.join('\n')
+        document.getElementById('countries').innerHTML = countries.join('\n')
+        document.getElementById('sql'      ).innerHTML = sql.countries.concat(sql.circuits).join('<br>')
+
         await sleep(700)
+    }
+
+
+    function CountriesInsertIfNotFound(key)
+    {
+        if (database.countries.has(key.toLowerCase()))
+            return false
+
+        const country = (countriesData.filter(item => {
+            const options = ['en_short_name', 'alpha_2_code', 'alpha_3_code']
+            for(let option of options)
+            {
+                if ( item[option].toLowerCase() == key.toLowerCase() ) return true
+            }
+            return false
+        }) || [{ en_short_name : key }]).pop()
+
+        const normalized = ((name) => {
+            const words = name.split(' ').filter(word => word.length != 0)
+            words.map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+            
+            return words.join(' ')
+        })(country.en_short_name)
+
+        database.countries.set(key.toLowerCase(), {
+            id   : database.countries.size + 1,
+            name : normalized
+        })
+
+        return true
     }
 
 
@@ -58,29 +113,34 @@
                 throw new Error('Unexpected structure on retrieved season data')
 
             response = await fetch(`../json/countries.json`)
-            const countries = await response.json()
+            countriesData = await response.json()
 
             for(let race of data.MRData.RaceTable.Races)
             {
-                if (!database.circuits.has(race.Circuit.circuitId))
+                if (CountriesInsertIfNotFound(race.Circuit.Location.country))
                 {
-                    database.circuits.set(race.Circuit.circuitId, {
-                        id   : database.circuits.size + 1,
-                        name : race.Circuit.circuitName
-                    })
                     await UpdateView()
                 }
 
+                if (!database.circuits.has(race.Circuit.circuitId))
+                {
+                    database.circuits.set(race.Circuit.circuitId, {
+                        id      : database.circuits.size + 1,
+                        name    : race.Circuit.circuitName,
+                        country : database.countries.get(race.Circuit.Location.country.toLowerCase()).id
+                    })
+                    await UpdateView()
+                }
+                
                 for(let result of race.Results)
                 {
                     const driver = result.Driver
                     if (!database.drivers.has(driver.driverId))
                     {
-                        const country = countries.filter( item => item.nacionality == driver.nacionality) 
                         database.drivers.set(driver.driverId, {
                             id      : database.drivers.size + 1,
                             name    : driver.givenName + ' ' + driver.familyName,
-                            country : country.num_code,
+                            country : driver.nationality, 
                             points  : 0
                         })
                         await UpdateView
@@ -89,7 +149,6 @@
                     {
                         database.drivers.get(driver.driverId).points += parseInt(result.points)
                     }
-
                 }
             }
             await UpdateView()
@@ -99,8 +158,6 @@
             alert(error.message)
         }
     }
-
-    
 
     document.addEventListener('DOMContentLoaded', DOMLoaded)
 })()
