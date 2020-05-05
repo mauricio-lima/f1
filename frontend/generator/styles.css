@@ -35,7 +35,7 @@ body {
     font-family   : 'Space Mono', monospace;
     border-radius : 12px;
     padding       : 12px;
-    resize        : vertical;
+    overflow-x    : scroll;
 }
 
 .container .row {
