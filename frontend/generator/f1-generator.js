@@ -43,7 +43,7 @@
                               <div class="col-sm-9" >${circuit.name} </div>
                            </div>`)
 
-            sql.circuits.push(`INSERT INTO tb_circuitos (ID_CIRCUITO, NM_CIRCUITO, ID_PAIS) VALUES (${circuit.id}, '${circuit.name}', '${circuit.country});`)
+            sql.circuits.push(`INSERT INTO tb_circuitos (ID_CIRCUITO, NM_CIRCUITO, NR_EXTENSAO, ID_PAIS) VALUES (${circuit.id}, '${circuit.name}', NULL, ${circuit.country});`)
         }
 
         const countries = []
@@ -54,7 +54,7 @@
                               <div class="col-sm-11" >${country.name} </div>
                            </div>`)
 
-            sql.countries.push(`INSERT INTO tb_paises (ID_PAIS, NM_PAIS) VALUES (${country.id}, '${country.name}');`)
+            sql.countries.push(`INSERT INTO tb_paises (ID_PAIS, NM_PAIS, NR_POPULACAO) VALUES (${country.id}, '${country.name}', NULL);`)
         }
 
         document.getElementById('drivers'  ).innerHTML =   drivers.join('\n')
