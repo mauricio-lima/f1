@@ -21,9 +21,10 @@
             return 0
         })
         drivers = drivers.map( driver => `<div class="row">
-                                              <div class="col-sm-1" > ${driver.id}     </div>
-                                              <div class="col-sm-9" > ${driver.name}   </div>
-                                              <div class="col-sm-1" > ${driver.points} </div>
+                                              <div class="col-sm-1" > ${driver.id}      </div>
+                                              <div class="col-sm-6" > ${driver.name}    </div>
+                                              <div class="col-sm-4" > ${driver.country} </div>
+                                              <div class="col-sm-1" > ${driver.points}  </div>
                                           </div>`)
 
         const circuits = []
@@ -37,7 +38,7 @@
 
         document.getElementById('drivers').innerHTML  = drivers.join('<br>')
         document.getElementById('circuits').innerHTML = circuits.join('<br>')
-        await sleep(700)
+        await sleep(100)
     }
 
 
@@ -76,11 +77,11 @@
                     const driver = result.Driver
                     if (!database.drivers.has(driver.driverId))
                     {
-                        const country = countries.filter( item => item.nacionality == driver.nacionality) 
+                        //const country = countries.filter( item => item.nacionality == driver.nacionality) 
                         database.drivers.set(driver.driverId, {
                             id      : database.drivers.size + 1,
                             name    : driver.givenName + ' ' + driver.familyName,
-                            country : country.num_code,
+                            country : driver.nationality, //country.num_code,
                             points  : 0
                         })
                         await UpdateView
