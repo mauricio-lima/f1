@@ -1,3 +1,18 @@
+body {
+    margin-bottom : 30px;
+}
+
+.window {
+    max-height : 200px;
+    min-height : 200px;
+}
+
+.scroll {
+    margin     : 2px;
+    max-height : 180px;
+    min-height : 150px;
+    overflow-y : scroll;
+}
 
 #drivers {
     background : #b3d9ff;
@@ -13,6 +28,10 @@
 
 #countries {
     background : limegreen;
+}
+
+#sql {
+    font-family: 'Space Mono', monospace;
 }
 
 .container .row {

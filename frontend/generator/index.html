@@ -6,6 +6,7 @@
         <title>
             F1 Seasons Data Generator
         </title>
+        <link   rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@700&display=swap" >
         <link   rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"   ></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
@@ -19,14 +20,21 @@
         </h3>
         <div class="container">
             <div class="row">
-                <div id="drivers"   class="col" ></div>
-                <div id="circuits"  class="col" ></div>
-                <div id="countries" class="col" ></div>
+                <div id="countries" class="border-primary   scroll col" ></div>
+                <div id="circuits"  class="border-secondary scroll col" ></div>
             </div>
             <div class="row">
-                <div id="sql" class="col">
-                    conteudo
+                <div id="drivers"   class="scroll col" ></div>
+                <div id="teams"     class="scroll col" >
+                    teams
                 </div>
+            </div>
+            <div class="row">
+                <label for="sql">Example textarea</label>
+            </div>
+            <div class="row">
+                    <textarea id="sql" class="col"  rows="8">
+                    </textarea>
             </div>
         </div>
     </body>

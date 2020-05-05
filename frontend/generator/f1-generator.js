@@ -60,7 +60,7 @@
         document.getElementById('drivers'  ).innerHTML =   drivers.join('\n')
         document.getElementById('circuits' ).innerHTML =  circuits.join('\n')
         document.getElementById('countries').innerHTML = countries.join('\n')
-        document.getElementById('sql'      ).innerHTML = sql.countries.concat(sql.circuits).join('<br>')
+        document.getElementById('sql'      ).innerHTML = sql.countries.concat(sql.circuits).join('\n')
 
         await sleep(700)
     }
