@@ -27,6 +27,17 @@
         }
         let largest
 
+        const countries = []
+        for(const [key, country] of database.countries.entries())
+        {
+            countries.push(`<div class="row">
+                                <div class="col-sm-1"  >${country.id}   </div>
+                                <div class="col-sm-11" >${country.name} </div>
+                            </div>`)
+
+            sql.countries.push(`INSERT INTO tb_paises    (ID_PAIS,     NM_PAIS,     NR_POPULACAO)         VALUES (${country.id}, '${country.name}', NULL);`)
+        }
+
         let drivers = []
         for(const [key, driver] of database.drivers.entries()) 
         {
@@ -65,17 +76,6 @@
                                <div class="col-sm-9" >${circuit[1].name} </div>
                     </div>`
         })
-
-        const countries = []
-        for(const [key, country] of database.countries.entries())
-        {
-            countries.push(`<div class="row">
-                                <div class="col-sm-1"  >${country.id}   </div>
-                                <div class="col-sm-11" >${country.name} </div>
-                            </div>`)
-
-            sql.countries.push(`INSERT INTO tb_paises    (ID_PAIS,     NM_PAIS,     NR_POPULACAO)         VALUES (${country.id}, '${country.name}', NULL);`)
-        }
 
         let teams = []
         for(const [key, driver] of database.teams.entries()) teams.push(driver)
