@@ -27,16 +27,17 @@
         }
         let largest
 
-        const countries = []
-        for(const [key, country] of database.countries.entries())
-        {
-            countries.push(`<div class="row">
-                                <div class="col-sm-1"  >${country.id}   </div>
-                                <div class="col-sm-11" >${country.name} </div>
-                            </div>`)
+        let countries = Array.from(database.countries)
+        largest = countries.reduce( (largest,item) => largest = item[1].name.length > largest ? item[1].name.length : largest, 0 )
+        countries = countries.map( country => {
+            sql.countries.push(`INSERT INTO tb_pais      (ID_PAIS,     NM_PAIS,     NR_POPULACAO)         VALUES (${country[1].id.toString().padStart(2)}, '${country[1].name}',${' '.repeat(largest - country[1].name.length)} NULL);`)
 
-            sql.countries.push(`INSERT INTO tb_paises    (ID_PAIS,     NM_PAIS,     NR_POPULACAO)         VALUES (${country.id}, '${country.name}', NULL);`)
-        }
+            return `
+                    <div class="row">
+                        <div class="col-sm-1"  >${country[1].id}   </div>
+                        <div class="col-sm-11" >${country[1].name} </div>
+                    </div>`
+        })
 
         let circuits = Array.from(database.circuits)
         largest = circuits.reduce( (largest,item) => largest = item[1].name.length > largest ? item[1].name.length : largest, 0 )
@@ -65,7 +66,7 @@
                             <div class="col-sm-4" > ${country[1].name} </div>
                         </div>`)
         })
-        
+
         let drivers = []
         for(const [key, driver] of database.drivers.entries()) 
         {
