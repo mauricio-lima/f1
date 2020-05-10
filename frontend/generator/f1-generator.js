@@ -30,7 +30,6 @@
         for(const [key, driver] of database.drivers.entries()) 
         {
             drivers.push(driver)
-            sql.drivers.push(`INSERT INTO tb_pilotos   (ID_PILOTO,   NM_PILOTO,                ID_PAIS) VALUES (${driver.id}, '${driver.name}', ${driver.country});`)
         }
 
         drivers.sort( (a,b) => {
@@ -39,8 +38,11 @@
             return 0
         })
 
+        const largest = drivers.reduce( (largest,item) => largest = item.name.length > largest ? item.name.length : largest, 0 )
         const countriesArray = Array.from(database.countries) 
         drivers = drivers.map( driver => {
+            sql.drivers.push(`INSERT INTO tb_pilotos   (ID_PILOTO,   NM_PILOTO,                ID_PAIS) VALUES (${driver.id.toString().padStart(2)}, '${driver.name}',${' '.repeat(largest - driver.name.length)} ${driver.country.toString().padStart(2)});`)
+
             const country = countriesArray.filter( item => item[1].id == driver.country ).pop()
             return `
                     <div class="row">
