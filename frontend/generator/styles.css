@@ -38,6 +38,7 @@ body {
 
 #sql {
     font-family   : 'Space Mono', monospace;
+    font-size     :  13px;
     border-radius : 12px;
     padding       : 12px;
     overflow-x    : scroll;
