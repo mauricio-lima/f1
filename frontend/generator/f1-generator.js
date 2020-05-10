@@ -50,6 +50,22 @@
                     </div>`
         })
 
+        let teams = []
+        for(const [key, driver] of database.teams.entries()) teams.push(driver)
+        
+        largest = teams.reduce( (largest,item) => largest = item.name.length > largest ? item.name.length : largest, 0 )
+        
+        teams = teams.map(team => {
+            sql.teams.push(`INSERT INTO tb_equipes   (ID_EQUIPE,   NM_EQUIPE,                ID_PAIS) VALUES (${team.id.toString().padStart(2)}, '${team.name}',${' '.repeat(largest - team.name.length)} ${team.country});`)
+
+            const country = Array.from(database.countries).filter( item => item[1].id == team.country ).pop()
+            teams.push(`<div class="row">
+                            <div class="col-sm-1" > ${team.id}         </div>
+                            <div class="col-sm-4" > ${team.name}       </div>
+                            <div class="col-sm-4" > ${country[1].name} </div>
+                        </div>`)
+        })
+        
         let drivers = []
         for(const [key, driver] of database.drivers.entries()) 
         {
@@ -77,21 +93,6 @@
                     </div>`
         })
 
-        let teams = []
-        for(const [key, driver] of database.teams.entries()) teams.push(driver)
-        
-        largest = teams.reduce( (largest,item) => largest = item.name.length > largest ? item.name.length : largest, 0 )
-        
-        teams = teams.map(team => {
-            sql.teams.push(`INSERT INTO tb_equipes   (ID_EQUIPE,   NM_EQUIPE,                ID_PAIS) VALUES (${team.id.toString().padStart(2)}, '${team.name}',${' '.repeat(largest - team.name.length)} ${team.country});`)
-
-            const country = Array.from(database.countries).filter( item => item[1].id == team.country ).pop()
-            teams.push(`<div class="row">
-                            <div class="col-sm-1" > ${team.id}         </div>
-                            <div class="col-sm-4" > ${team.name}       </div>
-                            <div class="col-sm-4" > ${country[1].name} </div>
-                        </div>`)
-        })
 
         document.getElementById('drivers'  ).innerHTML =   drivers.join('\n')
         document.getElementById('circuits' ).innerHTML =  circuits.join('\n')
