@@ -1,5 +1,7 @@
 (() => {
-    let countriesData = []
+    const staticData = {
+        countries : []
+    } 
 
     const database = {
         countries : new Map,
@@ -19,29 +21,42 @@
     {
         let sql = {
             countries : [],
-            circuits  : []
+            circuits  : [],
+            teams     : [],
+            drivers   : []
         }
 
         let drivers = []
-        for(const [key, driver] of database.drivers.entries()) drivers.push(driver)
+        for(const [key, driver] of database.drivers.entries()) 
+        {
+            drivers.push(driver)
+            sql.drivers.push(`INSERT INTO tb_pilotos   (ID_PILOTO,   NM_PILOTO,                ID_PAIS) VALUES (${driver.id}, '${driver.name}', ${driver.country});`)
+        }
+
         drivers.sort( (a,b) => {
             if (a.points < b.points) return  1
             if (a.points > b.points) return -1
             return 0
         })
-        drivers = drivers.map( driver => `<div class="row">
-                                              <div class="col-sm-2" > ${driver.id}      </div>
-                                              <div class="col-sm-5" > ${driver.name}    </div>
-                                              <div class="col-sm-3" > ${driver.country} </div>
-                                              <div class="col-sm-2" > ${driver.points}  </div>
-                                          </div>`)
+
+        const countriesArray = Array.from(database.countries) 
+        drivers = drivers.map( driver => {
+            const country = countriesArray.filter( item => item[1].id == driver.country ).pop()
+            return `
+                    <div class="row">
+                        <div class="col-sm-1" > ${driver.id}       </div>
+                        <div class="col-sm-5" > ${driver.name}     </div>
+                        <div class="col-sm-4" > ${country[1].name} </div>
+                        <div class="col-sm-2" > ${driver.points}   </div>
+                    </div>`
+        })
 
         const circuits = []
         for(const [key, circuit] of database.circuits.entries())
         {
             circuits.push(`<div class="row">
-                              <div class="col-sm-1" >${circuit.id}  </div>
-                              <div class="col-sm-9" >${circuit.name} </div>
+                               <div class="col-sm-1" >${circuit.id}  </div>
+                               <div class="col-sm-9" >${circuit.name} </div>
                            </div>`)
 
             sql.circuits.push(`INSERT INTO tb_circuitos (ID_CIRCUITO, NM_CIRCUITO, NR_EXTENSAO, ID_PAIS) VALUES (${circuit.id}, '${circuit.name}', NULL, ${circuit.country});`)
@@ -51,23 +66,24 @@
         for(const [key, country] of database.countries.entries())
         {
             countries.push(`<div class="row">
-                              <div class="col-sm-1"  >${country.id}   </div>
-                              <div class="col-sm-11" >${country.name} </div>
-                           </div>`)
+                                <div class="col-sm-1"  >${country.id}   </div>
+                                <div class="col-sm-11" >${country.name} </div>
+                            </div>`)
 
-            sql.countries.push(`INSERT INTO tb_paises (ID_PAIS, NM_PAIS, NR_POPULACAO) VALUES (${country.id}, '${country.name}', NULL);`)
+            sql.countries.push(`INSERT INTO tb_paises    (ID_PAIS,     NM_PAIS,     NR_POPULACAO)         VALUES (${country.id}, '${country.name}', NULL);`)
         }
 
         const teams = []
         for(const [key, team] of database.teams.entries())
         {
+            const country = Array.from(database.countries).filter( item => item[1].id == team.country ).pop()
             teams.push(`<div class="row">
-                              <div class="col-sm-1"  >${team.id}   </div>
-                              <div class="col-sm-4" >${team.name} </div>
-                              <div class="col-sm-4" >${team.country} </div>
-                           </div>`)
+                            <div class="col-sm-1" > ${team.id}         </div>
+                            <div class="col-sm-4" > ${team.name}       </div>
+                            <div class="col-sm-4" > ${country[1].name} </div>
+                        </div>`)
 
-            //sql.teams.push(`INSERT INTO tb_paises (ID_PAIS, NM_PAIS, NR_POPULACAO) VALUES (${country.id}, '${country.name}', NULL);`)
+            sql.teams.push(`INSERT INTO tb_teams     (ID_EQUIPE,   NM_EQUIPE,                ID_PAIS) VALUES (${team.id}, '${team.name}', ${team.country});`)
         }
 
         document.getElementById('drivers'  ).innerHTML =   drivers.join('\n')
@@ -75,9 +91,25 @@
         document.getElementById('countries').innerHTML = countries.join('\n')
         document.getElementById('teams'    ).innerHTML =     teams.join('\n')
 
-        document.getElementById('sql'      ).innerHTML = sql.countries.concat(sql.circuits).join('\n')
+        document.getElementById('sql'      ).innerHTML = []
+                                                            .concat(sql.countries)
+                                                            .concat(sql.circuits)
+                                                            .concat(sql.teams)
+                                                            .concat(sql.drivers)
+                                                            .join('\n')
 
         await sleep(700)
+    }
+
+
+    async function CountriesDataLoad()
+    {
+        if ( Array.isArray(staticData.countries) && (staticData.countries.length == 0) )
+        {
+            staticData.countries.splice(0, staticData.countries.length)
+            const response = await fetch(`../json/countries.json`)
+            staticData.countries = await response.json()
+        }
     }
 
 
@@ -86,7 +118,7 @@
         if (database.countries.has(key.toLowerCase()))
             return false
 
-        const country = (countriesData.filter(item => {
+        const country = (staticData.countries.filter(item => {
             const options = ['en_short_name', 'alpha_2_code', 'alpha_3_code']
             for(let option of options)
             {
@@ -111,18 +143,59 @@
     }
 
 
-    function TeamsInsertIfNotFound(key)
+    function CountryFromNationality(nationality)
     {
-        if ( database.teams.has(key.constructorId) )
-            return false
+        try
+        {
+            const country = staticData.countries.filter( country => {
+                const options = country.nationality.split(',')
+                const found = options.filter( option => option.toLowerCase().trim() == nationality.toLowerCase() )
+                return !!found.pop()
+            }).pop()
+    
+            if (!country)
+                return [null, false]
 
-        database.teams.set(key.constructorId, {
+            const newCountry = CountriesInsertIfNotFound(country.en_short_name)
+            return [country.en_short_name, newCountry]
+        }
+        catch (error)
+        {
+            throw error
+        }
+    }
+
+
+    function TeamsInsertIfNotFound(team)
+    {
+        if ( database.teams.has(team.constructorId) )
+            return [false, false]
+
+        const [country, isNewCountry] = CountryFromNationality(team.nationality)
+        database.teams.set(team.constructorId, {
             id      : database.teams.size + 1,
-            name    : key.name,
-            country : key.nationality
+            name    : team.name,
+            country : database.countries.get(country.toLowerCase()).id
         })
 
-        return true
+        return [true, isNewCountry]
+    }
+
+
+    function DriverInsertIfNotFound(driver)
+    {
+        if ( database.drivers.has(driver.driverId) )
+            return [false, false]
+
+        const [country, isNewCountry] = CountryFromNationality(driver.nationality)
+        database.drivers.set(driver.driverId, {
+            id      : database.drivers.size + 1,
+            name    : driver.givenName + ' ' + driver.familyName,
+            country : database.countries.get(country.toLowerCase()).id, 
+            points  : 0
+        })
+
+        return [true, isNewCountry]
     }
 
 
@@ -130,20 +203,17 @@
     {
         try
         {
-            let response
-
             const urlParameters = new URLSearchParams(location.search)
             if (!urlParameters.has('season'))
                 throw new Error('Need Season')
 
-            response = await fetch(`../json/f1-season-${urlParameters.get('season')}.json`)
+            const response = await fetch(`../json/f1-season-${urlParameters.get('season')}.json`)
             const data = await response.json()
 
             if (!data.MRData && !data.RaceTable && !data.RaceTable.Races)
                 throw new Error('Unexpected structure on retrieved season data')
 
-            response = await fetch(`../json/countries.json`)
-            countriesData = await response.json()
+            await CountriesDataLoad()
 
             for(let race of data.MRData.RaceTable.Races)
             {
@@ -164,25 +234,21 @@
                 
                 for(let result of race.Results)
                 {
-                    if ( TeamsInsertIfNotFound(result.Constructor) )
+                    const teamInsertion = TeamsInsertIfNotFound(result.Constructor) 
+                    if ( teamInsertion[0] || teamInsertion[1] )
                     {
                         await UpdateView()
                     }
 
-                    const driver = result.Driver
-                    if (!database.drivers.has(driver.driverId))
+                    const driverInsertion = DriverInsertIfNotFound(result.Driver) 
+                    if ( driverInsertion[0] || driverInsertion[1] )
                     {
-                        database.drivers.set(driver.driverId, {
-                            id      : database.drivers.size + 1,
-                            name    : driver.givenName + ' ' + driver.familyName,
-                            country : driver.nationality, 
-                            points  : 0
-                        })
-                        await UpdateView
+                        await UpdateView()
                     }
+                    
                     if (result.points != '0')
                     {
-                        database.drivers.get(driver.driverId).points += parseInt(result.points)
+                        database.drivers.get(result.Driver.driverId).points += parseInt(result.points)
                     }
                 }
             }
