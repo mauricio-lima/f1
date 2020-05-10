@@ -38,6 +38,18 @@
             sql.countries.push(`INSERT INTO tb_paises    (ID_PAIS,     NM_PAIS,     NR_POPULACAO)         VALUES (${country.id}, '${country.name}', NULL);`)
         }
 
+        let circuits = Array.from(database.circuits)
+        largest = circuits.reduce( (largest,item) => largest = item[1].name.length > largest ? item[1].name.length : largest, 0 )
+        circuits = circuits.map( circuit => {
+            sql.circuits.push(`INSERT INTO tb_circuitos (ID_CIRCUITO, NM_CIRCUITO, NR_EXTENSAO, ID_PAIS) VALUES (${circuit[1].id.toString().padStart(2)}, '${circuit[1].name}',${' '.repeat(largest - circuit[1].name.length)} NULL, ${circuit[1].country.toString().padStart(2)});`)
+
+            return `
+                    <div class="row">
+                               <div class="col-sm-1" >${circuit[1].id}  </div>
+                               <div class="col-sm-9" >${circuit[1].name} </div>
+                    </div>`
+        })
+
         let drivers = []
         for(const [key, driver] of database.drivers.entries()) 
         {
@@ -62,18 +74,6 @@
                         <div class="col-sm-5" > ${driver.name}     </div>
                         <div class="col-sm-4" > ${country[1].name} </div>
                         <div class="col-sm-2" > ${driver.points}   </div>
-                    </div>`
-        })
-
-        let circuits = Array.from(database.circuits)
-        largest = circuits.reduce( (largest,item) => largest = item[1].name.length > largest ? item[1].name.length : largest, 0 )
-        circuits = circuits.map( circuit => {
-            sql.circuits.push(`INSERT INTO tb_circuitos (ID_CIRCUITO, NM_CIRCUITO, NR_EXTENSAO, ID_PAIS) VALUES (${circuit[1].id.toString().padStart(2)}, '${circuit[1].name}',${' '.repeat(largest - circuit[1].name.length)} NULL, ${circuit[1].country.toString().padStart(2)});`)
-
-            return `
-                    <div class="row">
-                               <div class="col-sm-1" >${circuit[1].id}  </div>
-                               <div class="col-sm-9" >${circuit[1].name} </div>
                     </div>`
         })
 
