@@ -25,6 +25,7 @@
             teams     : [],
             drivers   : []
         }
+        let largest
 
         let drivers = []
         for(const [key, driver] of database.drivers.entries()) 
@@ -38,7 +39,7 @@
             return 0
         })
 
-        const largest = drivers.reduce( (largest,item) => largest = item.name.length > largest ? item.name.length : largest, 0 )
+        largest = drivers.reduce( (largest,item) => largest = item.name.length > largest ? item.name.length : largest, 0 )
         const countriesArray = Array.from(database.countries) 
         drivers = drivers.map( driver => {
             sql.drivers.push(`INSERT INTO tb_pilotos   (ID_PILOTO,   NM_PILOTO,                ID_PAIS) VALUES (${driver.id.toString().padStart(2)}, '${driver.name}',${' '.repeat(largest - driver.name.length)} ${driver.country.toString().padStart(2)});`)
@@ -75,18 +76,21 @@
             sql.countries.push(`INSERT INTO tb_paises    (ID_PAIS,     NM_PAIS,     NR_POPULACAO)         VALUES (${country.id}, '${country.name}', NULL);`)
         }
 
-        const teams = []
-        for(const [key, team] of database.teams.entries())
-        {
+        let teams = []
+        for(const [key, driver] of database.teams.entries()) teams.push(driver)
+        
+        largest = teams.reduce( (largest,item) => largest = item.name.length > largest ? item.name.length : largest, 0 )
+        
+        teams = teams.map(team => {
+            sql.teams.push(`INSERT INTO tb_equipes   (ID_EQUIPE,   NM_EQUIPE,                ID_PAIS) VALUES (${team.id.toString().padStart(2)}, '${team.name}',${' '.repeat(largest - team.name.length)} ${team.country});`)
+
             const country = Array.from(database.countries).filter( item => item[1].id == team.country ).pop()
             teams.push(`<div class="row">
                             <div class="col-sm-1" > ${team.id}         </div>
                             <div class="col-sm-4" > ${team.name}       </div>
                             <div class="col-sm-4" > ${country[1].name} </div>
                         </div>`)
-
-            sql.teams.push(`INSERT INTO tb_teams     (ID_EQUIPE,   NM_EQUIPE,                ID_PAIS) VALUES (${team.id}, '${team.name}', ${team.country});`)
-        }
+        })
 
         document.getElementById('drivers'  ).innerHTML =   drivers.join('\n')
         document.getElementById('circuits' ).innerHTML =  circuits.join('\n')
