@@ -19,7 +19,12 @@ body {
     background : #ffc266;
 }
 
-#drivers .row  div:first-child, #drivers .row div:last-child {
+#countries .row  div:first-child,
+#circuits  .row  div:first-child,
+#teams     .row  div:first-child,
+#drivers   .row  div:first-child, 
+#drivers   .row  div:last-child 
+{
     text-align : right;
 }
 
