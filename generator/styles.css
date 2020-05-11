@@ -1,18 +1,47 @@
-
-#drivers {
-    background : #b3d9ff;
+body {
+    margin-bottom : 30px;
 }
 
-#drivers .row  div:first-child, #drivers .row div:last-child {
+.window {
+    max-height : 200px;
+    min-height : 200px;
+}
+
+.scroll {
+    margin        : 2px;
+    max-height    : 180px;
+    min-height    : 150px;
+    border-radius : 8px;
+    overflow-y    : scroll;
+}
+
+#drivers {
+    background : #ffc266;
+}
+
+#countries .row  div:first-child,
+#circuits  .row  div:first-child,
+#teams     .row  div:first-child,
+#drivers   .row  div:first-child, 
+#drivers   .row  div:last-child 
+{
     text-align : right;
 }
 
 #circuits {
-    background : #ffc34d;
+    background : #ffad33;
 }
 
 #countries {
-    background : limegreen;
+    background : #ff9900;
+}
+
+#sql {
+    font-family   : 'Space Mono', monospace;
+    font-size     :  13px;
+    border-radius : 12px;
+    padding       : 12px;
+    overflow-x    : scroll;
 }
 
 .container .row {
